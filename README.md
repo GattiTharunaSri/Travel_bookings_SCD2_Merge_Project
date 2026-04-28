@@ -141,7 +141,8 @@ travel_bookings/
 └── default/data/     (Volume — landing zone for source CSVs)
 ```
 
-![Catalog Explorer showing all schemas and a sample of booking_fact](docs/screenshots/01_catalog_explorer.png)
+<img width="1897" height="937" alt="image" src="https://github.com/user-attachments/assets/3b1fb161-1be4-49c1-8d53-0b2ab4c8cae4" />
+
 *Catalog Explorer view of the `travel_bookings` catalog with bronze / default / analytics / ops schemas and a sample of the `booking_fact` table.*
 
 ---
@@ -273,22 +274,25 @@ The screenshots below come from the actual deployed pipeline running on Databric
 
 ### Both workflows registered
 
-![Jobs & Pipelines listing the two workflows](docs/screenshots/02_jobs_pipelines_list.png)
+<img width="1863" height="513" alt="image" src="https://github.com/user-attachments/assets/0834a1aa-0272-45f5-9eed-b679f98e497f" />
+
 *Databricks Jobs & Pipelines page showing both workflows: `travel_booking_data_processing_flow` (notebooks) and `travel_booking_aggregation_flow` (SQL).*
 
 ### Workflow 1 — successful run
+<img width="1896" height="927" alt="image" src="https://github.com/user-attachments/assets/fdec73fc-6570-4b0b-8960-0531e0497bd7" />
 
-![travel_booking_data_processing_flow run details](docs/screenshots/03_processing_flow_run.png)
 *Run details of `travel_booking_data_processing_flow` for `arrival_date=2025-09-23` — completed in **11m 4s**, status **Succeeded**, on `cluster_demo` (single-node `c3-standard-4-lssd`, DBR 17.3.10 / Spark 4.0).*
 
 ### Workflow 1 — task DAG
 
-![travel_booking_data_processing_flow DAG](docs/screenshots/04_processing_flow_dag.png)
+<img width="1697" height="883" alt="image" src="https://github.com/user-attachments/assets/c67379ff-f3e8-412f-86ac-6c47c896a725" />
+
 *Full task graph of Workflow 1 — every task succeeded: `validate_args` → bronze ingestions → DQ → `customer_scd2_dim` → `bookings_fact_build` → `zordering` → `analyze_stats` → `trigger_aggregate_flow`.*
 
 ### Workflow 2 — task DAG
 
-![travel_booking_aggregation_flow DAG](docs/screenshots/05_aggregation_flow_dag.png)
+<img width="1701" height="885" alt="image" src="https://github.com/user-attachments/assets/b90c4e70-2a37-4d43-bb9e-a2c7c4591e61" />
+
 *Full task graph of Workflow 2 (Gold) — `travel_booking_init` → fan-out to `customer_360_run`, `daily_revenue_summary`, `data_quality_summary` → fan-in to `log_flow_completion`. Total duration **1m 26s** on a Serverless SQL Warehouse.*
 
 ---
