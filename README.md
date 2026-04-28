@@ -429,6 +429,3 @@ LIMIT 50;
 
 ---
 
-## License
-
-Released under the [MIT License](LICENSE).
